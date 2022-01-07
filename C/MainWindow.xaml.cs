@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -70,7 +71,7 @@ namespace C
             }
             else if (txtPassword.Password.ToString() == "close")
             {
-                Close();
+                Environment.Exit(0);
             }
             else
             {
@@ -345,6 +346,10 @@ namespace C
             }));
         }
 
+        void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
 
         private void displayAlertBox(String message, String title)
         {

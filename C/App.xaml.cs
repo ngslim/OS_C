@@ -23,6 +23,7 @@ namespace C
         public const int REFRESH_RATE = 1 * 60 * 1000; //1 minute, in milliseconds
         public const String APP_DIRECTORY = @"C:\Users\Public\Parental Control\";
         public const String SCREENSHOT_DIRECTORY = @"C:\Users\Public\Parental Control\Screenshots\";
+        public const String CONFIG_FILE = "config.txt";
     }
 
     public class Time

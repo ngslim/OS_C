@@ -167,7 +167,7 @@ namespace C
         {
             List<Phase> phaseList = new List<Phase>();
 
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Gambon\Desktop\test.txt");
+            string[] lines = System.IO.File.ReadAllLines(@$"{Constant.APP_DIRECTORY}config.txt");
             foreach (string line in lines)
             {
                 Phase newPhase = new Phase(line);

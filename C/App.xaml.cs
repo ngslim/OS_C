@@ -21,6 +21,8 @@ namespace C
         public const int WRONG_PASSWORD_SHUTDOWN = 10 * 60; //10 minutes, in seconds
         public const int WRONG_PHASE_SHUTDOWN = 15; //15 seconds
         public const int REFRESH_RATE = 1 * 60 * 1000; //1 minute, in milliseconds
+        public const String APP_DIRECTORY = @"C:\Users\Public\Parental Control\";
+        public const String SCREENSHOT_DIRECTORY = @"C:\Users\Public\Parental Control\Screenshots\";
     }
 
     public class Time
@@ -222,7 +224,7 @@ namespace C
             captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
             DateTime now = DateTime.Now;
             string fileName = $"Screenshot_{now.Day.ToString()}_{now.Month.ToString()}_{now.Year.ToString()}_{now.Hour.ToString()}h{now.Minute.ToString()}m{now.Second.ToString()}s";
-            captureBitmap.Save(@$"C:\Users\Gambon\Desktop\{fileName}.jpg", ImageFormat.Jpeg);
+            captureBitmap.Save(@$"{Constant.SCREENSHOT_DIRECTORY}{fileName}.jpg", ImageFormat.Jpeg);
         }
     }
 

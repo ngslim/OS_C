@@ -25,7 +25,6 @@ namespace C
             InstallRunOnStartUp();
             this.Topmost = true;
             txtPassword.Focus();
-            Utils.CaptureScreen();
             phaseList = readPhaseList();
             if (phaseList.Count == 0)
             {
@@ -285,14 +284,8 @@ namespace C
                 {
                     showWindow();
                     setMessage($"Hệ thống sẽ mở khoá sau khi kết thúc phiên hoạt động vào {phase.To}");
-                    Thread unlockLoginThread = new Thread(async () =>
-                    {
-
-                        await Task.Delay((phase.To - Time.Now()).ToSeconds() * 1000);
-                        resetWindow();
-                        return;
-                    });
-                    unlockLoginThread.Start();
+                    await Task.Delay((phase.To - Time.Now()).ToSeconds() * 1000);
+                    resetWindow();
                     return;
                 }
 
